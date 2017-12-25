@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from datetime import datetime
+from django.template.loader import get_template
 from .models import Post
 # Create your views here.
 def homepage(request):
+	template=get_template('index.html')
+	now=datetime.now()
 	posts=Post.objects.all()
-	post_lists=list()
-	for count,post in enumerate(posts):
-		post_lists.append("<h2>No.%d:" %count+str(post.title)+"</h2><hr>")
-		post_lists.append("<small>"+str(post.body)+"</small><br><br>")
-	return HttpResponse(post_lists)
+	html=template.render(locals())
+	return HttpResponse(html)
