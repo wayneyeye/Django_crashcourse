@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from mainsite.views import homepage
+from mainsite.views import showpost
 
 urlpatterns = [
 	url(r'^$',homepage),
+	url(r'^post/(\w+)$', showpost),
     url(r'^admin/', admin.site.urls),
 ]
