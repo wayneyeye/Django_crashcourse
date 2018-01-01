@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from datetime import datetime
 from django.template.loader import get_template
-from .models import Post
+from .models import Post #That's the new syntax for explicit relative imports. It means import from the current package.
 # Create your views here.
 def homepage(request):
 	template=get_template('index.html')
