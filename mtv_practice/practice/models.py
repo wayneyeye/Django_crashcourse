@@ -11,3 +11,16 @@ class NewTable(models.Model):
 	float_f=models.FloatField(null=True)
 	int_f=models.IntegerField(default=2010)
 	text_f=models.TextField()
+
+# Create a data validated field
+class Product(models.Model):
+	SIZES=(
+		('S','Small'),
+		('L','Large'),
+		('XL','Extra Large')
+		)
+	sku=models.CharField(max_length=10)
+	name=models.CharField(max_length=200)
+	size=models.CharField(max_length=2,choices=SIZES)
+	def __unicode__(self):#customize the display name
+		return self.name
