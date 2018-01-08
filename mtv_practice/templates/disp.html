@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- disp.html -->
+<html lang="en">
+<head>
+  <title>List of all products</title>
+</head>
+<body>
+	<h1>{{title}}</h1>
+	<hr>
+	<table width=400 border=1 bgcolor='#ccffcc'>
+	<tr><th>Name</th>
+		<th>SKU</th>
+		<th>Size</th>
+	</tr>
+	{% for p in products %}
+	<tr><td>{{p.name}}</td>
+		<td><a href="/list/{{p.sku}}">{{p.sku}}</a></td>
+		<td>{{p.size}}</td>
+	</tr>
+	{% endfor %}
+	</table>
+</body>
+<hr>
+<ul>
+	<li><a href="/">Back to Home</a></li>
+	<li><a href="/list">Back to List</a></li>
+</ul>
+</html>
