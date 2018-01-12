@@ -6,14 +6,14 @@ from datetime import datetime
 
 def index(request, tvno='0'):
 	tv_list = [{'name':'CCTV News', 'tvcode':'yPhFG2I0dE0'},
-			{'name':'CCTV中文国际', 'tvcode':'E1DTZBy4xr4'},]
+			{'name':'CCTV中文国际', 'tvcode':'uYV0GRb9z_w'},]
 
 	template = get_template('index.html')
 	now = datetime.now()
 	hour = now.timetuple().tm_hour
 	tvno = tvno
 	tv = tv_list[int(tvno)]
-	html = template.render(locals())
+	html = template.render(locals())# shorthand for compiling all local variables into a dictionary
 
 	return HttpResponse(html)
 

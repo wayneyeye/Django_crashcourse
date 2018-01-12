@@ -25,7 +25,7 @@ SECRET_KEY = 'rpj&awdo&kv_+*(fi78-1_61jmqlcjivvuqg$c9!7te7e%65@6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
