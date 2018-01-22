@@ -1,0 +1,44 @@
+<!-- index.html (ch08www project) -->
+{% extends "base.html" %}
+{% block title %}I have something to say{% endblock %}
+{% block content %}
+<div class='container' align=center>
+
+    <form name="my form" action='/' method='GET'>
+        <label for='byear'>Birth Year</label>
+        <select name='byear'>
+            {%for year in years%}
+            <option value='{{year}}'>{{year}}</option>
+            {%endfor%}
+        </select>
+        <br>
+        <label for='user_id'>Your ID:</label>
+        <input id='user_id' type='text' name='user_id'>
+        <label for='user_pass'>Your Password:</label>
+        <input id='user_pass' type='password' name='user_pass'>
+        <input type='submit' value='Submit'>
+        <input type='reset' value='Reset'>
+        <br>
+        <label for='fcolor'>Favorite Colors:</label>
+        {%for c in colors%}
+        <input type='checkbox' name='fcolor' value='{{c}}'>{{c}}
+        {%endfor%}
+        <br>
+    </form>
+    BYear: {{b_year|default:"0000"}}<br/>
+    Your ID: {{urid|default:"No ID Yet!"}}<br/>
+    {% if verified %}
+    <em>Passed Verification</em>
+    {% else %}
+    <em>Wrong Password</em>
+    {% endif %}
+    <br>
+    Colors:
+    {%for c in fcolor%}
+        {{c}}
+    {%empty%}
+        no colors chosen!
+    {%endfor%}
+    <br>
+</div>
+{% endblock %}
