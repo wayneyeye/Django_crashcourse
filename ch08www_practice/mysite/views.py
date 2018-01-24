@@ -24,3 +24,24 @@ def index(request):
 	fcolor=request.GET.getlist('fcolor')
 	html=template.render(locals())
 	return HttpResponse(html)
+
+def posts(request):
+	template=get_template('posts.html')
+	posts=models.Post.objects.filter(enabled=True).order_by('-pub_time')[:30]
+	moods=models.Mood.objects.all()
+	try:
+		urid=request.GET['user_id1']
+		urpass=request.GET['user_pass']
+		urpost=request.GET['user_post']
+		urmood=request.GET['mood']
+	except:
+		urid=None
+		message='Every field should be filled before submission!'
+	if urid!=None:
+		mood=models.Mood.objects.get(status=urmood)
+		post=models.Post.objects.create(mood=mood,nickname=urid,del_pass=urpass,message=urpost)
+		post.save()
+		message="Sucessfully Saved! Please keep your password %s! The post will be published after censoring." %urpass
+	
+	html=template.render(locals())
+	return HttpResponse(html)
