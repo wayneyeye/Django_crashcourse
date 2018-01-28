@@ -13,8 +13,7 @@ def index(request):
 		urpass=request.GET['user_pass']
 		b_year=request.GET['byear']
 	except:
-		urid=None
-
+		urid=None	
 	if urid!=None and urpass=='12345':
 		verified=True
 	else:
@@ -25,7 +24,7 @@ def index(request):
 	html=template.render(locals())
 	return HttpResponse(html)
 
-def posts(request):
+def posts(request,pid=None,del_pass=None):
 	template=get_template('posts.html')
 	posts=models.Post.objects.filter(enabled=True).order_by('-pub_time')[:30]
 	moods=models.Mood.objects.all()
@@ -37,7 +36,20 @@ def posts(request):
 	except:
 		urid=None
 		message='Every field should be filled before submission!'
-	if urid!=None:
+
+	if del_pass and pid:
+		try:
+			post=models.Post.objects.get(id=pid)
+		except:
+			post=None
+		if post:
+			if post.del_pass==del_pass:
+				post.delete()
+				message="Successfully Deleted!"
+			else:
+				message="Wrong password!"
+
+	elif urid!=None:
 		mood=models.Mood.objects.get(status=urmood)
 		post=models.Post.objects.create(mood=mood,nickname=urid,del_pass=urpass,message=urpost)
 		post.save()

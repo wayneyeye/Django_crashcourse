@@ -2,6 +2,22 @@
 {% extends "base.html" %}
 {% block title %}I have something to say{% endblock %}
 {% block content %}
+<!-- js go_delete -->
+<script>
+    function go_delete(id){
+        var user_pass=document.getElementById('user_pass').value;
+        if (user_pass != ""){
+            var usr='/'+id+'/'+user_pass;
+            //console.log(usr);
+            window.location=usr;
+        }
+
+    }
+</script>
+
+
+    
+<!-- end of js go_delete -->
 <div class='container' align=center>
     <form name="my form" action='/posts' method='GET'>
         Your Mood: <br/>
@@ -33,7 +49,8 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">{{p.nickname}} feels {{p.mood}}</div>
                 <div class="panel-body">{{p.message|linebreaks}}</div>
-                <div class="panel-footer" align="right"><small>{{p.pub_time}}</small></div>
+                <div class="panel-footer" align="right"><small>{{p.pub_time}}<span class="glyphicon glyphicon-trash" onclick='go_delete({{p.id}})'></span></small></div>
+                
             </div>
         </div>
         {%cycle "" "" "" "</div>" %}

@@ -20,5 +20,6 @@ from mysite.views import posts
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
+    url(r'^(\d+)/(\w+)/$', posts), #redirect to delete
     url(r'^posts$', posts),
 ]
