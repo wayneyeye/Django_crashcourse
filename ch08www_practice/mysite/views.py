@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.template.loader import get_template
 from mysite import models
 from django.http import HttpResponse
+from django.template import RequestContext
+from django.template.loader import render_to_string
 # Create your views here.
 def index(request):
 	template=get_template('index.html')
@@ -57,3 +59,21 @@ def posts(request,pid=None,del_pass=None):
 	
 	html=template.render(locals())
 	return HttpResponse(html)
+
+def listing(request):
+	template=get_template('listing.html')
+	posts=models.Post.objects.filter(enabled=True).order_by('-pub_time')[:150]
+	moods=models.Mood.objects.all()
+	html=template.render(locals())
+	return HttpResponse(html)
+
+def posting(request):
+	template=get_template('posting.html')
+	moods=models.Mood.objects.all()
+	message='Every field should be filled before submission!'
+	# request_context=RequestContext(request)
+	# request_context.push(locals())
+	# print request_context
+	# html=template.render('posting.html',request_context)
+	# return HttpResponse(html)
+	return render(request,"posting.html",locals())

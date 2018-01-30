@@ -17,9 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from mysite.views import index
 from mysite.views import posts
+from mysite.views import listing
+from mysite.views import posting
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
-    url(r'^(\d+)/(\w+)/$', posts), #redirect to delete
-    url(r'^posts$', posts),
+    # url(r'^(\d+)/(\w+)/$', posts), #redirect to delete
+    # url(r'^posts$', posts),
+    url(r'^posting$', posting),
+    url(r'^listing$', listing),
 ]

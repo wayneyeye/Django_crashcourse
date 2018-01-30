@@ -14,12 +14,10 @@
 
     }
 </script>
-
-
     
 <!-- end of js go_delete -->
 <div class='container' align=center>
-    <form name="my form" action='/posts' method='GET'>
+    <form name="my form" action='/posting' method='GET'>
         Your Mood: <br/>
         {%for m in moods%}
         <input type='radio' name='mood' value='{{m.status}}'>{{m.status}}
