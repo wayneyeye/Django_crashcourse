@@ -19,6 +19,7 @@ from mysite.views import index
 from mysite.views import posts
 from mysite.views import listing
 from mysite.views import posting
+from mysite.views import post2db
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
@@ -26,4 +27,5 @@ urlpatterns = [
     # url(r'^posts$', posts),
     url(r'^posting$', posting),
     url(r'^listing$', listing),
+    url(r'^post2db$', post2db),
 ]

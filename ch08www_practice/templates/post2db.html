@@ -1,0 +1,17 @@
+<!--post2db-->
+{% extends "base.html" %}
+{% block title %}I have something to say{% endblock %}
+{% block content %}
+<div class='container' align=center>
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+    <form name="my form3" action='.' method='POST'>{% csrf_token %}
+        <p>
+            {{ post_form.as_p }}
+        </p>
+        <input type='submit' value='Submit!'>
+        <input type='reset' value='Reset'>
+    </form>
+</div>
+{% endblock %}

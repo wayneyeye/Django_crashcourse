@@ -4,9 +4,11 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.template.loader import get_template
 from mysite import models
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from mysite import forms
 from django.template import RequestContext
 from django.template.loader import render_to_string
+
 # Create your views here.
 def index(request):
 	template=get_template('index.html')
@@ -77,3 +79,19 @@ def posting(request):
 	# html=template.render('posting.html',request_context)
 	# return HttpResponse(html)
 	return render(request,"posting.html",locals())
+
+def post2db(request):
+	if request.method=="POST":
+		post_form=forms.PostForm(request.POST)
+		if post_form.is_valid():
+			message = "您的信息已储存，等管理员启用后就能看到"
+			post_form.save()
+			return HttpResponseRedirect('/post2db')
+		else:
+			message="如果要张贴信息那么每一个字段都要填写！"
+	else:
+		post_form=forms.PostForm()
+		message = "如果要张贴信息那么每一个字段都要填写！"
+	template=get_template("post2db.html")
+	#moods=models.Mood.objects.all()
+	return render(request, "post2db.html", 	locals())
