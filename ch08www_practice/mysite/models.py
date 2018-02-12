@@ -6,10 +6,10 @@ from django.db import models
 
 # Create your models here.
 class Mood(models.Model):
-    status = models.CharField(max_length=10, null=False)
+    name = models.CharField(max_length=10, null=False)
 
-    def __unicode__(self):
-        return self.status
+    def __str__(self):
+        return self.name
 
 
 class Post(models.Model):
