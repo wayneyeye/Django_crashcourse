@@ -86,7 +86,7 @@ def post2db(request):
 		if post_form.is_valid():
 			message = "您的信息已储存，等管理员启用后就能看到"
 			post_form.save()
-			return HttpResponseRedirect('/post2db')
+			return render(request, "post2db.html", locals())
 		else:
 			message="如果要张贴信息那么每一个字段都要填写！"
 	else:
