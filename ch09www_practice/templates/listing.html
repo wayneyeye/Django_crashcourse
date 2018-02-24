@@ -1,0 +1,23 @@
+<!-- listing.html (ch08www project) -->
+{% extends "base.html" %}
+{% block title %}I have something to say{% endblock %}
+{% block content %}
+<div class='container' align=center>
+    <div class='row'>
+        <div class="col-md-12">
+            <h1>宝宝心里苦 宝宝有话只在这里说</h1>
+        </div>
+    </div>
+    <br>
+    {%for p in posts%}
+        {%cycle "<div class='row'> <div class='col-md-3'>" "<div class='col-md-3'>" "<div class='col-md-3'>" "<div class='col-md-3'>"%}
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{p.nickname}} feels {{p.mood}}</div>
+                <div class="panel-body">{{p.message|linebreaks}}</div>
+                <div class="panel-footer" align="right"><small>{{p.pub_time}}</small></div>
+            </div>
+        </div>
+        {%cycle "" "" "" "</div>" %}
+    {%endfor%}
+</div>
+{% endblock %}

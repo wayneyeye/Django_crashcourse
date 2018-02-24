@@ -1,0 +1,27 @@
+<!-- posting.html (ch08www project) -->
+{% extends "base.html" %}
+{% block title %}I have something to say{% endblock %}
+{% block content %}
+<div class='container' align=center>
+    <form name="my form2" action='.' method='POST'>{% csrf_token %} 
+        Your Mood: <br/>
+        {%for m in moods%}
+        <input type='radio' name='mood' value='{{m.status}}'>{{m.status}}
+        {%endfor%}
+        <br/>
+        Leave a Message Today:<br/>
+        {%if message%}
+            <div class='alert alert-warning'>{{message}}</div>
+        {%endif%}
+        <textarea name='user_post' rows=3 cols=70></textarea><br>
+        <label for='user_id1'>Your Nickname:</label>
+        <input id='user_id1' type='text' name='user_id1'>
+        <label for='user_pass'>Password:</label>
+        <input id='user_pass' type='password' name='user_pass'><br>
+        <input type='submit' value='Submit'>
+        <input type='reset' value='Reset'>
+    </form>
+</div>
+
+
+{% endblock %}
