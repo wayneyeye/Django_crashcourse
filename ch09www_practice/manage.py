@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ch08www_practice.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ch09www_practice.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
